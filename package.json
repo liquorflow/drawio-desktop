@@ -81,5 +81,6 @@
   },
   "dependencies": {
     "electron-updater": "^6.1.8"
-  }
+  },
+  "_note": "Personal fork for learning Electron packaging. Only building linux targets locally to keep things simple."
 }
