@@ -46,8 +46,7 @@
     "linux": {
       "target": [
         { "target": "AppImage", "arch": ["x64"] },
-        { "target": "deb", "arch": ["x64"] },
-        { "target": "rpm", "arch": ["x64"] }
+        { "target": "deb", "arch": ["x64"] }
       ],
       "category": "Graphics",
       "maintainer": "JGraph Ltd"
@@ -82,5 +81,5 @@
   "dependencies": {
     "electron-updater": "^6.1.8"
   },
-  "_note": "Personal fork for learning Electron packaging. Only building linux targets locally to keep things simple."
+  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway."
 }
