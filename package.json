@@ -1,59 +1,85 @@
 {
-  "name": "draw.io",
-  "version": "29.6.6",
-  "description": "draw.io desktop",
-  "exports": "./src/main/electron.js",
-  "type": "module",
-  "main": "src/main/electron.js",
-  "engines": {
-    "node": ">=20"
-  },
+  "name": "drawio-desktop",
+  "version": "24.2.2",
+  "description": "A desktop application for draw.io diagram editor",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "sync": "node ./sync.cjs",
-    "release-win": "electron-builder --config electron-builder-win.json --publish always",
-    "release-win32": "electron-builder --config electron-builder-win32.json --publish always",
-    "release-win-arm64": "electron-builder --config electron-builder-win-arm64.json --publish always",
-    "release-appx": "electron-builder --config electron-builder-appx.json --publish always",
-    "release-linux": "electron-builder --config electron-builder-linux-mac.json --publish always",
-    "release-snap": "electron-builder --config electron-builder-snap.json --publish never"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:jgraph/drawio-desktop.git"
+  "build": {
+    "appId": "com.jgraph.drawio.desktop",
+    "productName": "draw.io",
+    "copyright": "Copyright © 2024 JGraph Ltd",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "drawio/src/main/webapp/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        { "target": "dmg", "arch": ["x64", "arm64"] },
+        { "target": "zip", "arch": ["x64", "arm64"] }
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64", "ia32"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "publisherName": "JGraph Ltd"
+    },
+    "linux": {
+      "target": [
+        { "target": "AppImage", "arch": ["x64"] },
+        { "target": "deb", "arch": ["x64"] },
+        { "target": "rpm", "arch": ["x64"] }
+      ],
+      "category": "Graphics",
+      "maintainer": "JGraph Ltd"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "jgraph",
+      "repo": "drawio-desktop"
+    }
   },
   "keywords": [
-    "draw.io",
+    "drawio",
     "diagram",
-    "flowchart",
-    "UML"
+    "electron",
+    "graph"
   ],
-  "author": "JGraph <support@draw.io>",
+  "author": {
+    "name": "JGraph Ltd",
+    "email": "draw@jgraph.com",
+    "url": "https://www.diagrams.net"
+  },
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/jgraph/drawio-desktop/issues"
-  },
-  "homepage": "https://github.com/jgraph/drawio",
-  "dependencies": {
-    "@cantoo/pdf-lib": "^2.6.1",
-    "buffer": "^6.0.3",
-    "commander": "^14.0.3",
-    "compression": "^1.8.1",
-    "crc": "^4.3.2",
-    "electron-context-menu": "^4.1.1",
-    "electron-log": "^5.4.3",
-    "electron-progressbar": "^2.2.1",
-    "electron-store": "^11.0.2",
-    "electron-updater": "^6.8.3",
-    "tslib": "^2.8.1"
-  },
   "devDependencies": {
-    "@electron/fuses": "^1.8.0",
-    "@electron/notarize": "^3.1.1",
-    "dotenv": "^17.3.1",
-    "electron": "^40.8.4",
-    "electron-builder": "^26.8.1",
-    "quicklookjs": "^1.0.1",
-    "sumchecker": "^3.0.1"
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.8"
   }
 }
