@@ -49,7 +49,10 @@
         { "target": "deb", "arch": ["x64"] }
       ],
       "category": "Graphics",
-      "maintainer": "JGraph Ltd"
+      "maintainer": "JGraph Ltd",
+      "desktop": {
+        "StartupWMClass": "draw.io"
+      }
     },
     "nsis": {
       "oneClick": false,
@@ -82,5 +85,5 @@
   "dependencies": {
     "electron-updater": "^6.1.8"
   },
-  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway. Added artifactName so built files include arch in the filename - easier to tell apart when I build both x64 and arm64. Fixed malformed author field that was missing the name key."
+  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway. Added artifactName so built files include arch in the filename - easier to tell apart when I build both x64 and arm64. Fixed malformed author field that was missing the name key. Added StartupWMClass to linux desktop entry so the window groups correctly in the taskbar on GNOME."
 }
