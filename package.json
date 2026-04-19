@@ -60,7 +60,8 @@
       "provider": "github",
       "owner": "jgraph",
       "repo": "drawio-desktop"
-    }
+    },
+    "artifactName": "${productName}-${version}-${arch}.${ext}"
   },
   "keywords": [
     "drawio",
@@ -69,7 +70,7 @@
     "graph"
   ],
   "author": {
-    "name": "JGraph Ltd",
+     Ltd",
     "email": "draw@jgraph.com",
     "url": "https://www.diagrams.net"
   },
@@ -81,5 +82,5 @@
   "dependencies": {
     "electron-updater": "^6.1.8"
   },
-  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway."
+  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway. Added artifactName so built files include arch in the filename - easier to tell apart when I build both x64 and arm64."
 }
