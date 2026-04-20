@@ -65,7 +65,8 @@
       "owner": "jgraph",
       "repo": "drawio-desktop"
     },
-    "artifactName": "${productName}-${version}-${arch}.${ext}"
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "compression": "maximum"
   },
   "keywords": [
     "drawio",
@@ -86,5 +87,5 @@
   "dependencies": {
     "electron-updater": "^6.1.8"
   },
-  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway. Added artifactName so built files include arch in the filename - easier to tell apart when I build both x64 and arm64. Fixed malformed author field that was missing the name key. Added StartupWMClass to linux desktop entry so the window groups correctly in the taskbar on GNOME. Added Comment field to desktop entry for a slightly nicer app description in app menus."
+  "_note": "Personal fork for learning Electron packaging. Dropped rpm target since I only run Debian-based systems locally anyway. Added artifactName so built files include arch in the filename - easier to tell apart when I build both x64 and arm64. Fixed malformed author field that was missing the name key. Added StartupWMClass to linux desktop entry so the window groups correctly in the taskbar on GNOME. Added Comment field to desktop entry for a slightly nicer app description in app menus. Set compression to maximum - builds take longer but I don't care, I want the smallest output files."
 }
